@@ -1,16 +1,18 @@
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { increment, decrement, reset } from '../redux/slices/counterSlice';
+import { increment, decrement } from '../redux/slices/counterSlice';
 
-export default function Counter() {
-  const count = useSelector((state) => state.counter.value);
+const Counter = () => {
+  const value = useSelector((state) => state.counter.value); // <- state.counter має існувати
   const dispatch = useDispatch();
 
   return (
-    <div style={{ textAlign: 'center' }}>
-      <h2>{count}</h2>
-      <button onClick={() => dispatch(increment())}>➕ Increment</button>
-      <button onClick={() => dispatch(decrement())}>➖ Decrement</button>
-      <button onClick={() => dispatch(reset())}>🔄 Reset</button>
+    <div>
+      <h1>Counter: {value}</h1>
+      <button onClick={() => dispatch(increment())}>+</button>
+      <button onClick={() => dispatch(decrement())}>-</button>
     </div>
   );
-}
+};
+
+export default Counter;
